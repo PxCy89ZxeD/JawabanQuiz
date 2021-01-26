@@ -1,0 +1,74 @@
+Public Class frmtransaksi
+    Dim total, bayar, kembali As Double
+    Private haircut, rebonding, creambath, skincare, serumwajah, lipstick As Single
+    Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handles Button1.Click
+        If CheckBox1.Checked = True Then
+            haircut = 25000
+        Else
+            haircut = 0
+        End If
+        If CheckBox2.Checked = True Then
+            rebonding = 50000
+        Else
+            rebonding = 0
+        End If
+        If CheckBox3.Checked = True Then
+            creambath = 35000
+        Else
+            creambath = 0
+        End If
+        If CheckBox4.Checked = True Then
+            skincare = 100000
+        Else
+            skincare = 0
+        End If
+        If CheckBox5.Checked = True Then
+            serumwajah = 30000
+        Else
+            serumwajah = 0
+        End If
+        If CheckBox6.Checked = True Then
+            lipstick = 75000
+        Else
+            lipstick = (0)
+        End If
+
+        total = haircut + rebonding + creambath + skincare + serumwajah + lipstick
+        TextBox2.Text = total
+
+    End Sub
+
+    Private Sub TextBox3_KeyPress(sender As Object, e As System.Windows.Forms.KeyPressEventArgs) Handles TextBox3.KeyPress
+        If e.KeyChar = Chr(13) Then
+            bayar = Val(TextBox3.Text)
+            kembali = bayar - total
+            TextBox4.Text = "Rp" & Format(kembali, "#,#.##")
+
+        End If
+    End Sub
+
+    Private Sub TextBox3_TextChanged(sender As System.Object, e As System.EventArgs) Handles TextBox3.TextChanged
+
+    End Sub
+
+    Private Sub frmtransaksi_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'SalonDataSet5.TBL_TRANSAKSI' table. You can move, or remove it, as needed.
+        Me.TBL_TRANSAKSITableAdapter.Fill(Me.SalonDataSet5.TBL_TRANSAKSI)
+
+    End Sub
+
+    Private Sub Button2_Click(sender As System.Object, e As System.EventArgs) Handles Button2.Click
+        TBLTRANSAKSIBindingSource.EndEdit()
+        TBL_TRANSAKSITableAdapter.Update(SalonDataSet5)
+        MessageBox.Show("Data Tersimpan!!")
+
+    End Sub
+
+    Private Sub Button3_Click(sender As System.Object, e As System.EventArgs) Handles Button3.Click
+        TBLTRANSAKSIBindingSource.RemoveCurrent()
+    End Sub
+
+    Private Sub Button4_Click(sender As System.Object, e As System.EventArgs) Handles Button4.Click
+        TBLTRANSAKSIBindingSource.AddNew()
+    End Sub
+End Class

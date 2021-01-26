@@ -1,0 +1,28 @@
+Public Class FormLogin
+
+    Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handles Button1.Click
+        login_valid = oTBL_USER.Login(txtUsername.Text, txtPassword.Text)
+        If (login_valid = True) Then
+            MessageBox.Show("Selamat Datang Di GULU - GULU SALON!")
+            Form1.Show()
+            Me.Hide()
+        Else
+            MessageBox.Show("Access Denied (X)")
+        End If
+    End Sub
+
+    Private Sub Button2_Click(sender As System.Object, e As System.EventArgs) Handles Button2.Click
+        End
+    End Sub
+
+    Private Sub CheckBox1_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles CheckBox1.CheckedChanged
+        If CheckBox1.Checked = True Then
+
+            txtPassword.UseSystemPasswordChar = False
+
+        Else
+
+            txtPassword.UseSystemPasswordChar = True
+        End If
+    End Sub
+End Class
